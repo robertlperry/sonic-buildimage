@@ -21,18 +21,29 @@ module sonic-interface {
 	import sonic-vrf {
 		prefix vrf;
 	}
+	organization "SONiC";
+
+	contact "SONiC";
 
 	description "INTERFACE yang Module for SONiC OS";
 
+	revision 2024-03-31 {
+		description "Fixed linting errors";
+		reference "RFC 8407";
+	}
+
 	revision 2021-03-30 {
 		description "Modify the type of vrf name";
+		reference "RFC 8407";
 	}
 
 	revision 2019-07-01 {
 		description "First Revision";
+		reference "RFC 8407";
 	}
 
 	container sonic-interface {
+		description "INTERFACE top-level container";
 
 		container INTERFACE {
 
@@ -40,24 +51,25 @@ module sonic-interface {
 
 			list INTERFACE_LIST {
 
+				key "name";
 				description "INTERFACE part of config_db.json with vrf";
 
-				key "name";
 
 				leaf name {
 					type leafref {
 						path /port:sonic-port/port:PORT/port:PORT_LIST/port:name;
 					}
+					description "INTERFACE name";
 				}
 
 				leaf vrf_name {
 					type leafref {
 						path "/vrf:sonic-vrf/vrf:VRF/vrf:VRF_LIST/vrf:name";
 					}
+					description "INTERFACE VRF name";
 				}
 
 				leaf nat_zone {
-					description "NAT Zone for the interface";
 					type uint8 {
 						range "0..3" {
 							error-message "Invalid nat zone for the interface.";
@@ -65,45 +77,51 @@ module sonic-interface {
 						}
 					}
                                         default "0";
+					description "NAT Zone for the interface";
 				}
 
 				leaf mpls {
-					description "Enable/disable MPLS routing for the interface";
 					type enumeration {
-						enum enable;
-						enum disable;
+						enum enable {
+							description "INTERFACE MPLS enable enum";
+						}
+						enum disable {
+							description "INTERFACE MPLS disable enum";
+						}
 					}
+					description "Enable/disable MPLS routing for the interface";
 				}
 
 				leaf ipv6_use_link_local_only {
-					description "Enable/Disable IPv6 link local address on interface";
 					type stypes:mode-status;
 					default disable;
+					description "Enable/Disable IPv6 link local address on interface";
 				}
 
                 leaf loopback_action {
-                    description "Packet action when a packet ingress and gets routed on the same IP interface";
                     type stypes:loopback_action;
+                    description "Packet action when a packet ingress and gets routed on the same IP interface";
                 }
 			}
 			/* end of INTERFACE_LIST */
 
 			list INTERFACE_IPPREFIX_LIST {
 
+				key "name ip-prefix";
 				description "INTERFACE part of config_db.json with ip-prefix";
 
-				key "name ip-prefix";
 
 				leaf name {
 					/* This node must be present in INTERFACE_LIST */
+					type leafref {
+						path /port:sonic-port/port:PORT/port:PORT_LIST/port:name;
+					}
 					must "(current() = ../../INTERFACE_LIST[name=current()]/name)"
 					{
 						error-message "Must condition not satisfied, Try adding PORT: {}, Example: 'Ethernet0': {}";
 					}
 
-					type leafref {
-						path /port:sonic-port/port:PORT/port:PORT_LIST/port:name;
-					}
+					description "INTERFACE Port List name";
 				}
 
 				leaf ip-prefix {
@@ -111,13 +129,19 @@ module sonic-interface {
 						type stypes:sonic-ip4-prefix;
 						type stypes:sonic-ip6-prefix;
 					}
+					description "INTERFACE Port List ip-prefix";
 				}
 
 				leaf scope {
 					type enumeration {
-						enum global;
-						enum local;
+						enum global {
+							description "INTERFACE_IPPREFIX_LIST scope enum - global";
+						}
+						enum local {
+							description "INTERFACE_IPPREFIX_LIST scope enum - local";
+						}
 					}
+					description "INTERFACE_IPPREFIX_LIST scope";
 				}
 
 				leaf family {
@@ -128,9 +152,10 @@ module sonic-interface {
 					   should be IPv4 or IPv6 according.
 					 */
 
+					type stypes:ip-family;
 					must "(contains(../ip-prefix, ':') and current()='IPv6') or
 						(contains(../ip-prefix, '.') and current()='IPv4')";
-					type stypes:ip-family;
+					description "INTERFACE_IPPREFIX_LIST address family";
 				}
 			}
 			/* end of INTERFACE_IPPREFIX_LIST */
