@@ -13,7 +13,7 @@ sonic_dependencies = ['sonic-py-common']
 dependencies = [
     'bitarray==2.8.1',
     'ipaddress==1.0.23',
-    'lxml==4.9.1',
+    'lxml==5.3.0',
     'netaddr==0.8.0',
 ]
 
