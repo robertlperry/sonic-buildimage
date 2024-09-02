@@ -25,7 +25,7 @@ if sys.version_info.major == 3:
         # dependencies section of setuptools followed by uninstall of enum43
         # 'pyangbind==0.8.2',
         'Jinja2>=2.10',
-        'pyyaml==6.0.1',
+        'pyyaml==6.0.2',
     ]
     sonic_dependencies += [
         'sonic-yang-mgmt>=1.0',
@@ -43,7 +43,7 @@ else:
         'importlib-resources==3.3.1',  # importlib-resources v4.0.0 was released 2020-12-23 and drops support for Python 2
         'contextlib2==0.6.0.post1',
         # PyYAML 6.0 and newer dropped support for Python 2.7
-        'pyyaml==5.4.1',
+        'pyyaml==6.0.2',
     ]
 
 # Common modules for python2 and python3
