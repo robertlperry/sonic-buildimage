@@ -14,7 +14,7 @@ dependencies = [
     'bitarray==2.8.1',
     'ipaddress==1.0.23',
     'lxml==4.9.1',
-    'netaddr==0.8.0',
+    'netaddr==0.10.1',
 ]
 
 if sys.version_info.major == 3:

@@ -13,7 +13,7 @@ setuptools.setup(
     },
     install_requires = [
         'jinja2>=2.10',
-        'netaddr==0.8.0',
+        'netaddr==0.10.1',
         'pyyaml==6.0.1',
         'zipp==1.2.0', # importlib-resources needs zipp and seems to have a bug where it will try to import too new of a version for Python 2
     ],
