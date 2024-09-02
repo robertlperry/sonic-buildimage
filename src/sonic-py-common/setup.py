@@ -46,7 +46,7 @@ setup(
     ],
     tests_require=[
         'pytest',
-        'mock==3.0.5' # For python 2. Version >=4.0.0 drops support for py2
+        'mock==5.1.0' # For python 2. Version >=4.0.0 drops support for py2
     ],
     entry_points={
         'console_scripts': [
