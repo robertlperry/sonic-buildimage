@@ -38,7 +38,7 @@ else:
         # malfunction on stretch slave docker.
         'future',
         'Jinja2<3.0.0',
-        'pyangbind==0.6.0',
+        'pyangbind==0.8.6',
         'zipp==1.2.0',  # importlib-resources needs zipp and seems to have a bug where it will try to install too new of a version for Python 2
         'importlib-resources==3.3.1',  # importlib-resources v4.0.0 was released 2020-12-23 and drops support for Python 2
         'contextlib2==0.6.0.post1',
