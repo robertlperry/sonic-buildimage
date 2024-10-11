@@ -11,7 +11,7 @@ sonic_dependencies = ['sonic-py-common']
 
 # Common dependencies for Python 2 and 3
 dependencies = [
-    'bitarray==2.8.1',
+    'bitarray==2.9.3',
     'ipaddress==1.0.23',
     'lxml==4.9.1',
     'netaddr==0.8.0',
