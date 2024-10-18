@@ -28,14 +28,14 @@ setup(
         'sonic-cfg-help',
     ],
     install_requires = [
-        'xmltodict==0.12.0',
+        'xmltodict==0.14.2',
         'ijson==3.2.3',
         'jsondiff>=1.2.0',
         'tabulate==0.9.0'
     ],
     tests_require = [
         'pytest>3',
-        'xmltodict==0.12.0',
+        'xmltodict==0.14.2',
         'ijson==3.2.3',
         'jsondiff>=1.2.0'
     ],
